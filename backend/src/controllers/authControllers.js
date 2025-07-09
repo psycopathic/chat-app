@@ -4,6 +4,9 @@ import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 export const signup = async (req, res) => {
   const { fullName, email, password } = req.body;
+  if (!fullName || !email || !password) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
 
   try {
     if (password.length < 6) {
@@ -93,15 +96,15 @@ export const updateProfile = async (req, res) => {
     res.status(200).json(updatedUser);
   } catch (error) {
     console.log("error in update profile:", error);
-    res.status(500).json({ message: "Internal server error" }); 
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
-export const checkAuth = async (req,res) => {
-   try {
+export const checkAuth = async (req, res) => {
+  try {
     res.status(200).json(req.user);
   } catch (error) {
     console.log("Error in checkAuth controller", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
-}
+};
