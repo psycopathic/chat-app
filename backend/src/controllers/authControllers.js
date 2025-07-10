@@ -52,7 +52,7 @@ export const login = async (req, res) => {
         message: "Invalid Credentials",
       });
     }
-    const isPasswordCorrect = bcrypt.compare(password, user.password);
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect)
       return res.status(400).json({ message: "Invalid credentials" });
 
@@ -82,12 +82,12 @@ export const logout = (req, res) => {
 
 export const updateProfile = async (req, res) => {
   try {
-    const { ProfilePic } = req.body;
+    const { profilePic } = req.body;
     const userId = req.user._id;
 
-    if (!ProfilePic) return res.status(400).json({ message: "" });
+    if (!profilePic) return res.status(400).json({ message: "" });
 
-    const uploadResponses = await cloudinary.uploader.upload(ProfilePic);
+    const uploadResponses = await cloudinary.uploader.upload(profilePic);
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       { profilePic: uploadResponses.secure_url },
