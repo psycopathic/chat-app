@@ -20,7 +20,7 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.json({ limit: "10mb" }));
 app.use('/api/auth',authRoutes);
-app.use('/api/message',messageRoutes);
+app.use('/api/messages',messageRoutes);
 
 
 
