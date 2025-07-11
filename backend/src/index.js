@@ -5,11 +5,11 @@ import dotenv from 'dotenv';
 import { connectDB } from './lib/db.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import { app, server } from './lib/Socket.js';
 
 
 //initialization
 dotenv.config();
-const app = express();
 const port = process.env.PORT|| 5000;
 
 //middleware
@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
     connectDB();
 })
