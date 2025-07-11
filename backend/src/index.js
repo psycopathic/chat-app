@@ -18,9 +18,9 @@ app.use(cors({
     credentials:true
 }))
 app.use(cookieParser());
-app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
 app.use('/api/auth',authRoutes);
-app.use('/api/message',messageRoutes);
+app.use('/api/messages',messageRoutes);
 
 
 
