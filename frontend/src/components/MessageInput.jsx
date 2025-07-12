@@ -28,8 +28,8 @@ const MessageInput = () => {
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
-  const handleSendMessage = async(e) => {
-     e.preventDefault();
+    const handleSendMessage = async (e) => {
+    e.preventDefault();
     if (!text.trim() && !imagePreview) return;
 
     try {
@@ -37,6 +37,8 @@ const MessageInput = () => {
         text: text.trim(),
         image: imagePreview,
       });
+
+      console.log(sendMessage);
 
       // Clear form
       setText("");
@@ -46,7 +48,7 @@ const MessageInput = () => {
       console.error("Failed to send message:", error);
     }
   };
-  return (
+return (
     <div className="p-4 w-full">
       {imagePreview && (
         <div className="mb-3 flex items-center gap-2">
